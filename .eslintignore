@@ -1,0 +1,4 @@
+build/
+storybook-static/
+src/locales/
+node_modules
