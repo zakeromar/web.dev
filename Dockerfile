@@ -16,16 +16,16 @@ ARG REPO_READONLY_PASSWORD
 ARG AUTH_TOKEN
 
 
-RUN pnpm config set registry https://repo.mci.dev/artifactory/api/npm/npm/:_authToken=$AUTH_TOKEN
+RUN npm config set registry https://repo.mci.dev/artifactory/api/npm/npm
 # RUN npm config set registry https://repo.mci.dev/artifactory/api/npm/npm
-RUN pnpm set _authToken $AUTH_TOKEN
-RUN pnpm config fix
-RUN pnpm ci
+RUN npm set _authToken $AUTH_TOKEN
+RUN npm config fix
+RUN npm ci
 
 COPY . .
 
 RUN mkdir -p /home/node/app/dist
-RUN pnpm run build
+RUN npm run build
 EXPOSE 3000
 ENTRYPOINT [ "npx", "next", "start" ]
 CMD [ "-p", "3000" ]
