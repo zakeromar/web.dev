@@ -1,67 +1,61 @@
-stages:
-  - build
-  - deploy
-
 include:
   - file: .rule-template.yml
     project: zarebin-public/cicd-template
   - file: .scan-template.yml
     project: zarebin-public/cicd-template
 
-build_journey_next_dev:
+build_dev:
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
   only:
     refs:
-      - dev
+      - staging
   script:
-    - export IMAGE=docker.mci.dev/darkube/mci/journey_next
-    - darkube build -f . --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG
-      --workdir . --build-arg CICD_REPO_USER=$CICD_REPO_USER --build-arg CICD_REPO_PASS=$CICD_REPO_PASS
+    - export IMAGE="docker.mci.dev/darkube/mci/journey-next"
+    - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG --workdir
+      . --file ./Dockerfile --build-context . --build-arg REPO_READONLY_USERNAME=$REPO_READONLY_USERNAME --build-arg REPO_READONLY_PASSWORD=$REPO_READONLY_PASSWORD'
   stage: build
 
-build_journey_next_stage:
-  extends:
-    - .staging_build
-  script:
-    - export IMAGE=docker.mci.dev/darkube/mci/journey_next
-    - darkube build --push -t $IMAGE:$CI_COMMIT_TAG -t $IMAGE:$CI_COMMIT_REF_SLUG  --workdir
-      . --file ./Dockerfile --build-context . --build-arg CICD_REPO_USER=$CICD_REPO_USER --build-arg CICD_REPO_PASS=$CICD_REPO_PASS
-  stage: build
+stages:
+  - build
+  - deploy
 
 all_deploy_dev:
   only:
     refs:
-      - develop
+      - staging
   stage: deploy
   trigger:
     branch: main
-    project: mse/journey/journey-next
+    project: mse/journey/journey-ops
   variables:
     APP_NAME: 'journey-next'
     CHART_YAML_PATH: values.yaml
-    ENV: dev
+    ENV: stage
     IMAGE_TAG: $CI_COMMIT_SHORT_SHA
 
-all_deploy_stage:
-  extends: .staging_deploy
-  stage: deploy
-  trigger:
-    branch: master
-    project: mse/journey/journey-ops
-  variables:
-    APP_NAME: APP_NAME
-    CHART_YAML_PATH: values.yaml
-    ENV: stage
-    IMAGE_TAG: $CI_COMMIT_TAG
+build_prod:
+  image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d{1}\.\d{1,2}\.\d{1,3}$/'
+      when: always
+  script:
+    - export IMAGE="docker.mci.dev/darkube/mci/journey-next"
+    - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_TAG --workdir
+      . --file Dockerfile'
+  stage: build
 
-all_deploy_prod:
-  extends: .staging_deploy
+query_expansion_deploy_prod:
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d{1}\.\d{1,2}\.\d{1,3}$/'
+      when: always
+    - when: never
+
   stage: deploy
   trigger:
     branch: prod
     project: mse/journey/journey-ops
   variables:
-    APP_NAME: 'journey-next'
+    APP_NAME: journey-next
     CHART_YAML_PATH: values.yaml
     ENV: prod
     IMAGE_TAG: $CI_COMMIT_TAG
@@ -72,5 +66,5 @@ container_scan:
   extends:
     - .container_scan
   variables:
-    IMAGE: docker.mci.dev/darkube/mci/journey-client
+    IMAGE: docker.mci.dev/darkube/mci/journey-next
   stage: deploy
