@@ -8,7 +8,7 @@ build_dev:
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
   only:
     refs:
-      - staging
+      - stage
   script:
     - export IMAGE="docker.mci.dev/darkube/mci/journey-next"
     - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG --workdir
@@ -22,7 +22,7 @@ stages:
 all_deploy_dev:
   only:
     refs:
-      - staging
+      - stage
   stage: deploy
   trigger:
     branch: main
