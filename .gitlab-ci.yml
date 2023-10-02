@@ -12,7 +12,7 @@ build_dev:
   script:
     - export IMAGE="docker.mci.dev/darkube/mci/journey-next"
     - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG --workdir
-      . --file ./Dockerfile --build-context . --build-arg REPO_READONLY_USERNAME=$REPO_READONLY_USERNAME --build-arg REPO_READONLY_PASSWORD=$REPO_READONLY_PASSWORD'
+      . --file ./Dockerfile --build-context . --build-arg REPO_READONLY_USERNAME=$REPO_READONLY_USERNAME --build-arg REPO_READONLY_PASSWORD=$REPO_READONLY_PASSWORD --build-arg AUTH_TOKEN=$AUTH_TOKEN'
   stage: build
 
 stages:
