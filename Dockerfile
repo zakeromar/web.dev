@@ -21,6 +21,8 @@ RUN npm config set registry https://repo.mci.dev/artifactory/api/npm/npm
 RUN npm set _authToken $AUTH_TOKEN
 RUN npm config fix
 
+RUN npm i 
+
 COPY . .
 
 RUN mkdir -p /home/node/app/dist
