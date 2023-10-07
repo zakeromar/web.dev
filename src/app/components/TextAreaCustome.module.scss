@@ -1,0 +1,27 @@
+$colorHelperText: #9e9e9e;
+.parentStackStyle {
+  width: 328px;
+  height: auto;
+}
+.styleHelperText {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row !important;
+  color: $colorHelperText;
+}
+.customTextfield {
+  & .MuiOutlinedInput-root {
+    border-radius: 12px !important;
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: black; // Change border color to black when focused
+    }
+  }
+  label {
+    color: #646464; // Default label color
+  }
+  &.focused {
+    label {
+      color: black; // Change label color to black when focused
+    }
+  }
+}

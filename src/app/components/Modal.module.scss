@@ -1,0 +1,25 @@
+$colorIcon: #9c9ea2;
+$backgroundIcon: #f2f2f2;
+$defaultPictureBackground: #d9d9d9;
+.styleIconButton {
+  width: 24px !important;
+  height: 24px !important;
+  background-color: $backgroundIcon !important;
+  color: $colorIcon !important;
+  margin: 8.9px !important;
+}
+.defaultPicture {
+  width: 296px;
+  height: 112px;
+  border-radius: 12px;
+  background-color: $defaultPictureBackground;
+}
+
+.cardParent {
+  width: 328px;
+  height: auto;
+}
+
+.iconStyle {
+  font-size: 12px !important;
+}

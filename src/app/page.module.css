@@ -1,3 +1,10 @@
+
+.custom-datepicker-container {
+  /* Add your custom styles here */
+  border: 2px solid #000;
+  padding: 10px;
+  background-color: #fff;
+}
 .main {
   display: flex;
   flex-direction: column;
