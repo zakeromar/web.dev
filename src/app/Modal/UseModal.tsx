@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import CloseableCard from './Modal';
 import styles from './Modal.module.scss'
-
 export default function UseModal() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

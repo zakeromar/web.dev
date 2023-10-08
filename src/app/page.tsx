@@ -1,6 +1,6 @@
 'use client';
 import styles from './page.module.css'
-import Main from '@/app/components/Main'; // Import the Header component
+import Main from '@/app/components/Main'; 
 import { Theme } from '@/theme/Theme'
 
 export default function Home() {

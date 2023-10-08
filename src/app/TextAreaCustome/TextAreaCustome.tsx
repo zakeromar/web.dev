@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Stack, Typography, useTheme } from '@mui/material';
 import TextField from '@mui/material/TextField'
 import styles from './TextAreaCustome.module.scss'
-function MyTextarea() {
-    const theme = useTheme();
+ export  default function Textarea() {
     const [count, setCount] = useState<number>(0);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -33,4 +32,4 @@ function MyTextarea() {
     );
 }
 
-export default MyTextarea;
+;

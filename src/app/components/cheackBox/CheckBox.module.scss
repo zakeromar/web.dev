@@ -1,21 +1,22 @@
+$headerBackground:#333;
+$headerColor:#FFFF;
+$MuiChecked:#0a0a0a;
+$MuiCheckbox:#9e9e9e;
+
 .header {
-  background-color: #333;
-  color: white;
+  background-color: $headerBackground;
+  color: $headerColor;
   padding: 10px;
 }
-.backgroundCousom{
-  background-color:'red';
-  color:'red !important';
-  margin: auto;
-}
+
 .checkBox {
   &.MuiCheckbox-root {
-    color: #9e9e9e;
+    color: $MuiCheckbox;
   }
 
   &.Mui-checked {
     .MuiSvgIcon-root {
-      color: #0a0a0a;
+      color: $MuiChecked;
     }
   }
 }
@@ -23,6 +24,6 @@
   flex-direction: row-reverse;
 }
 .custom-chip:focus {
-  background-color: black;
-  color: white; /* Change text color to white for better visibility */
+  background-color: $MuiChecked;
+  color:$headerColor; /* Change text color to white for better visibility */
 }

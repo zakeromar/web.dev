@@ -1,73 +1,37 @@
-
-import * as React from 'react';
+import React, { useState } from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import HomeIcon from '@mui/icons-material/Home';
-import WifiFindIcon from '@mui/icons-material/WifiFind';
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import styles from './NavigationBar.module.scss'
-export default function LabelBottomNavigation() {
-    const [value, setValue] = React.useState('recents');
+import styles from './NavigationBar.module.scss';
+type NavigationItem = {
+    label: string;
+    value: string;
+    icon: JSX.Element;
+};
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+interface LabelBottomNavigationProps {
+    navigationItems: NavigationItem[];
+}
+export default function LabelBottomNavigation({ navigationItems }: LabelBottomNavigationProps) {
+    const [value, setValue] = useState('recents');
+    const handleChange = (event: any, newValue: string) => {
         setValue(newValue);
     };
-
+    const navigationItemStyles = (currentValue: string, itemValue: string) => ({
+        color: '#D8D8D8',
+        backgroundColor: currentValue === itemValue ? '#F2F2F2' : 'transparent',
+    });
     return (
         <BottomNavigation className={styles.BottomNavigationStyle} value={value} onChange={handleChange}>
-            {/* There is a duplicate code here, it should be corrected */}
-            <BottomNavigationAction
-                label="خانه"
-                value="HomeIcon"
-                icon={<HomeIcon />}
-                className={styles.BottomNavigationStyle}
-                sx={{
-                    backgroundColor: value === 'HomeIcon' ? '#F2F2F2' : 'transparent',
-                }}
-
-            />
-            <BottomNavigationAction
-                label="کشف کن "
-                value="discover"
-                icon={<WifiFindIcon />}
-                className={styles.BottomNavigationStyle}
-                sx={{
-                    backgroundColor: value === 'discover' ? '#F2F2F2' : 'transparent',
-                }}
-            />
-            <BottomNavigationAction
-                label="ببین"
-                value="see"
-                icon={<TravelExploreIcon />}
-                className={styles.BottomNavigationStyle}
-                sx={{
-                    backgroundColor: value === 'see' ? '#F2F2F2' : 'transparent',
-                }}
-            />
-            <BottomNavigationAction
-                label="علاقه مندی"
-                value="favorite"
-                icon={<FavoriteBorderIcon />}
-                className={styles.BottomNavigationStyle}
-                sx={{
-                    backgroundColor: value === 'favorite' ? '#F2F2F2' : 'transparent',
-                }}
-            />
-            <BottomNavigationAction
-                label="بیشتر"
-                value="more"
-                icon={<MoreHorizIcon />}
-                className={styles.BottomNavigationStyle}
-                sx={{
-                    backgroundColor: value === 'more' ? '#F2F2F2' : 'transparent',
-                    
-                }}
-            />
-
+            {navigationItems.map((item) => (
+                <BottomNavigationAction
+                    key={item.value}
+                    label={item.label}
+                    value={item.value}
+                    icon={item.icon}
+                    className={styles.BottomNavigationStyle}
+                    sx={navigationItemStyles(value, item.value)}
+                />
+            ))}
         </BottomNavigation>
     );
 }
-
-
