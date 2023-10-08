@@ -68,7 +68,7 @@ export default function DynamicTabs({ tabLabels }: DynamicTabsProps) {
                     aria-label="dynamic tabs"
                     textColor="inherit"
                     className={styles.TabIndicatorBackground}
-                    // sx={{ color: 'red' }} // Change the color here
+                     
                 >
                     {tabs}
                 </Tabs>

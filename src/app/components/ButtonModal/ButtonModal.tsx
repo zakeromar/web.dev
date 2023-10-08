@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import styles from './ButtonModal.module.scss'
 interface CustomButtonModal {
@@ -13,7 +13,8 @@ const ButtonModal = ({variantButton="contained",iconStart,iconEnd}: CustomButton
 
     return (
         <Button className={buttonStyle} variant={variantButton} startIcon={iconStart}  endIcon={iconEnd}>
-        متن دکمه
+       
+       <Typography variant='caption' p={1}>متن دکمه </Typography>
       </Button>
     );
 };

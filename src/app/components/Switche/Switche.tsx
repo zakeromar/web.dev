@@ -9,7 +9,6 @@ const Switche = ({ defaultChecked = false, disabled = false, checked = false }) 
             {...label}
             defaultChecked={defaultChecked}
             disabled={disabled}
-
         />
 
 

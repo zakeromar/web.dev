@@ -6,7 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 interface CustomChipProps {
     disable?: boolean;
-    icon: React.ReactNode; 
+    icon: React.ReactNode;
 }
 
 export default function CustomChip({ disable = false, icon }: CustomChipProps) {

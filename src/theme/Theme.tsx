@@ -16,7 +16,7 @@ createTheme({
 })
 
 const getFontFamily = (dir: Direction) =>
-  dir === 'ltr'
+  dir === 'rtl'
     ? ''
     : ''
 
@@ -63,7 +63,7 @@ export function Theme({direction = 'rtl', children}: ThemeProps) {
         },
       },
     },
-    //link: {fontSize: '14px', fontWeight: 400, lineHeight: '21.88px', color: palette.main.primary3},
+  
   }
 
   const theme = createTheme(
@@ -95,18 +95,7 @@ export function Theme({direction = 'rtl', children}: ThemeProps) {
           },
         },
       },
-        // MuiIconButton: {
-        //   styleOverrides: {
-        //     root: {
-        //       // Add your custom styles here
-        //       width: '24px',
-        //       height: '24px',
-        //       backgroundColor: '#f2f2f2 ',
-        //       color: '#9c9ea2 ',
-        //       margin: '8.9px',
-        //     },
-        //   },
-        // },
+        
       },
     },
     faIR

@@ -8,6 +8,8 @@ $defaultPictureBackground: #d9d9d9;
   color: $colorIcon !important;
   margin: 8.9px !important;
 }
+
+
 .defaultPicture {
   width: 296px;
   height: 112px;
@@ -22,4 +24,10 @@ $defaultPictureBackground: #d9d9d9;
 
 .iconStyle {
   font-size: 12px !important;
+}
+.useModalContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

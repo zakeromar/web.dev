@@ -18,22 +18,7 @@ declare module '@mui/material' {
       primary4: string
       primary5: string
     }
-    white: string
-    black: string
-    shades: {
-      1: string
-      2: string
-      '2.5': string
-      3: string
-      4: string
-      5: string
-      6: string
-      '6.5': string
-      7: string
-      8: string
-      9: string
-    }
-    disabled: string
+  
   }
   interface Palette {
     main: {
