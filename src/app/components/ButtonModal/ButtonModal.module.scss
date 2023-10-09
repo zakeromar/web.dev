@@ -1,0 +1,28 @@
+$colorbase:black;
+@mixin style-default-button {
+    width: 142px;
+    height: 40px;
+    border-radius:24px;
+    padding: 10px,12px,10px,12px;
+  }
+  
+.ButtonModalcontained{
+   
+    @include style-default-button;
+    background-color: $colorbase;
+    &:hover {
+        background-color: $colorbase;
+        border-color: $colorbase;
+        
+      }
+}
+
+.ButtonModaloutlined{
+    @include style-default-button;
+    color:$colorbase;
+    border-color:$colorbase;
+    &:hover {
+        border-color: $colorbase;
+        
+      }
+}

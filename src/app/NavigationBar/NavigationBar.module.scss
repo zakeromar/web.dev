@@ -1,0 +1,9 @@
+.BottomNavigationStyle {
+  flex-direction: row !important;
+  border-radius: 24px !important; 
+}
+.BottomNavigationStyle{
+  width: auto;
+  white-space: nowrap;  // Prevent text from wrapping
+  overflow: hidden;    // Hide any overflowing text
+}
